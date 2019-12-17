@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/common.css" type="text/css">
     <link rel="stylesheet" href="../css/register.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
-    <title>Buono -ログイン-</title>
+    <title>Buono -プロフィール編集画面-</title>
 </head>
 <body>
   <header>
@@ -21,19 +21,21 @@
   </header>
 <main>
   <div class="regi_info">
-    <h1>ログイン</h1>
-    <form action="" method="POST" id = "form">
-      <label for="box">ユーザーID</label>
-      <input type="text" name="user_id" value="" id="box"/>
+    <h1>新規登録</h1>
+    <form action="profile_edit.php" method="POST" id = "form">
+      <label for="box">新しいユーザー名</label>
+      <input type="text" name="user_name" value="" id="box"/>
+      <label for="user_name">現在のユーザーID</label>
+      <input type="text" name="user_id" value="" id="user_name" />
       <label for="password">パスワード</label>
       <input type="password" name="password" value="" id="password" />
-      <input type="submit" name="register"  value="ログイン"  />
+      <input type="submit" name="register"  value="新規登録"  />
     </form>
   </div>
 </main>
   <footer>
     <address>&copy;2019 buono All Rights Reserved.</address>
   </footer>
-  <script src="js/all.js"></script>
+  <script src="../js/all.js"></script>
 </body>
 </html>
