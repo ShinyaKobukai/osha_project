@@ -1,8 +1,9 @@
 <?php
 	include_once("../common/db_connect.php");
 	session_start();
+	$user_id = $_SESSION['user_id'];
 	if(isset($_POST['edit'])){
-   		if ( empty($_POST['user_name']) || empty($_POST['user_id']) || empty($_POST['password'])) {
+   		if ( empty($_POST['user_name']) ) {
      		$_SESSION["msg"] = '入力してください';
      		print("入力してください");
      		header('Location: profile_edit.html');
@@ -18,9 +19,9 @@
   	}
 	try {
 			$pdo = db_connect();
-			$sql = "UPDATE user SET user_name = ?, icon = ? WHERE user_id = ? AND password = ?";
+			$sql = "UPDATE user SET user_name = ?, icon = ? WHERE user_id = ?";
 			$stmt = $pdo->prepare($sql);
-    		$stmt->execute(array($user_name,$user_icon,$user_id,$password));
+    		$stmt->execute(array($user_name,$user_icon,$user_id));
 
 			if (empty($user_icon)) {
 				$_SESSION["msg"] = 'アイコンが設定されませんでした。';

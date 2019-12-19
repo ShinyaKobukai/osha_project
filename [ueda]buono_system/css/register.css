@@ -15,29 +15,12 @@ input {
 	border-radius: 1.5rem;
 }
 
-input[type="text"],
-input[type="password"]{
-	background-color: #E1F5A9;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus{
-	background-color: #CEE3F6;
-}
-
-input[type="submit"],
-input[type="reset"]{
-	display: block;
-	margin:30px auto;
-	width: 150px;
-}
-
 .regi_info {
 	margin: 0 auto;
 	margin-bottom: 30vh;
 	padding: 20px 0;
-		width:280px;
-		text-align: center;
-		border-radius: 2.5rem;
-		background-color: white;
-	}
+	width:280px;
+	text-align: center;
+	border-radius: 0.5rem;
+	background-color: white;
+}
