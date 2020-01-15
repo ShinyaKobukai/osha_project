@@ -1,0 +1,63 @@
+h1{
+	text-align: center;
+}
+
+body{
+	background-position: center;
+	background-size: cover;
+	/*background-size: 100px 100px;*/
+	background-repeat: no-repeat;
+	background-color:rgba(255,255,255,0.8);
+	background-blend-mode:lighten;
+	background-image: url("../img/devil.gif");
+}
+
+footer{
+	text-align: center;
+}
+
+#c_mes{
+	text-align: center;
+	padding-bottom: 1rem;
+}
+
+#text{
+	margin-bottom: 10px;
+	text-align: center;
+	margin-left: 3rem; 
+}
+
+.p_list{
+	justify-content: center;
+}
+
+#p_list_w{
+	display: grid;
+	text-align: center;
+	margin-left: auto;
+	grid-template-rows: 50px 50px 50px 50px 50px;
+	min-width: 30%;
+	height: 40px;
+
+}
+
+#p_list_ctrl{
+	display: grid;
+
+}
+
+#devil_gif{
+	margin: 10px;
+}
+
+.word{
+	text-align: center;
+}
+
+.box{
+	margin-bottom: 1rem;
+}
+
+.audio{
+	text-align: center;
+}

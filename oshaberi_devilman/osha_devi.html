@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/osha_devi.css">
+	<title>おしゃべりデビルマン</title>
+</head>
+<body>
+	<h1>おしゃべりデビルマン</h1>
+	<div id="c_mes">ここにしゃべらせる内容を書いてください</div>
+	<form name="form1">
+		<!-- <input type="text" name="word" value="" id="word" /> -->
+		<div id="text">
+			<textarea name="word" rows="4" cols="40" id="word">ここにきにうしてくたさい</textarea>
+			<input type="button" value="発声" onclick="clickBtn();" />
+		</div>
+	</form>
+
+	<div class ="p_list">
+<!--		<div id="p_list_w">-->
+<!--			<div id="word_1_ah">あ～</div> 	-->
+<!--			<div id="word_2_man">マン(短い)</div>	-->
+<!--			<div id="word_3_man_long">マン(長い)</div> 	-->
+<!--			<div id="word_4_desu">です</div>-->
+<!--			<div id="word_5_devilman">デビルマン</div>-->
+<!--		</div>-->
+
+<!--		<div id="p_list_ctrl">-->
+<!--			<div id="word_1_ah_wav"><audio src="r_word/ah.wav" controls></audio></div>-->
+<!--			<div id="word_2_man_wav"><audio src="r_word/man.wav" controls></audio></div>-->
+<!--			<div id="word_3_man_long_wav"><audio src="r_word/man_long.wav" controls></audio></div>-->
+<!--			<div id="word_4_desu_wav"><audio src="r_word/desu.wav" controls></audio></div>-->
+<!--			<div id="word_5_devilman_wav"><audio src="r_word/devilman.wav" controls></audio></div>-->
+<!--		</div>-->
+
+	<div class="box">
+		<div class="word">あ～</div>
+		<div class="audio"><audio src="devil_word/ah.wav" controls></audio></div>
+	</div>
+
+	<div class="box">
+		<div class="word">マン(短い)</div>
+		<div class="audio"><audio src="devil_word/man.wav" controls></audio></div>
+	</div>
+
+	<div class="box">
+		<div class="word">マン(長い)</div>
+		<div class="audio"><audio src="devil_word/man_long.wav" controls></audio></div>
+	</div>
+
+	<div class="box">
+		<div class="word">です</div>
+		<div class="audio"><audio src="devil_word/desu.wav" controls></audio></div>
+	</div>
+
+	<div class="box">
+		<div class="word">デビルマン</div>
+		<div class="audio"><audio src="devil_word/devilman.wav" controls></audio></div>
+	</div>
+
+
+	<!-- ここからおしゃべり機能 -->
+	<script type="text/javascript">
+		var clickBtn = function(){
+			const word = document.form1.word.value;
+			document.getElementById("word").textContent = word;
+			//一文字ずつar_wordにひらがなを格納して配列を回す
+			var ar_word = Array.from(word);
+			//かなとローマ字の対応表
+			var kana_roma = [
+				"あ","a","い","i","う","u","え","e","お","o",
+				"か","ka","き","ki","く","ku","け","ke","こ","ko",
+				"さ","sa","し","si","す","su","せ","se","そ","so",
+				"た","ta","ち","ti","つ","tu","て","te","と","to",
+				"な","na","に","ni","ぬ","nu","ね","ne","の","no",
+				"は","ha","ひ","hi","ふ","hu","へ","he","ほ","ho",
+				"ま","ma","み","mi","む","mu","め","me","も","mo",
+				"や","ya","ゆ","yu","よ","yo",
+				"ら","ra","り","ri","る","ru","れ","re","ろ","ro",
+				"わ","wa","を","wo","ん","n","　","d","c","t",
+				];
+			//ソースの格納配列の用意
+			var src = new Array;
+			//ローマ字を格納する変数
+			var r_name;
+			//再生するvoiceを用意する配列
+			var voice = new Audio(src[k]);
+			//特殊コマンド用のパス指定変数
+			var root_src;
+			//特殊コマンドを配列から削除するための変数
+			var del_target;
+			//1文字ずつ切り分けた分を配列を回す処理
+			for (var i = 0; i<ar_word.length; i++) {
+					console.log(ar_word[i]);
+					//全角空白が入力された際の処理
+					if(ar_word[i]=="　"){
+						src[i] = "devil_word/su.wav";
+						console.log(ar_word[i]);
+						console.log(src[i]);
+						// break;
+					}
+					//dが入力されたときの処理
+					if(ar_word[i]=="d"){
+						root_src = "devil_word/";
+						del_target = "d";
+						ar_word.some(function(v, i){
+						    if (v==del_target) ar_word.splice(i,1);    
+						});
+						console.log(ar_word[i]);
+						console.log(src[i]);
+						// break;
+					}
+					if(ar_word[i]=="t"){
+						root_src = "tiger_word/"; 
+						del_target = "t";
+						ar_word.some(function(v, i){
+						    if (v==del_target) ar_word.splice(i,1);    
+						});
+						console.log(ar_word[i]);
+						console.log(src[i]);
+						// break;
+					}
+					if(ar_word[i]=="c"){
+						root_src = "casha_word/"; 
+						del_target = "c";
+						ar_word.some(function(v, i){
+						    if (v==del_target) ar_word.splice(i,1);    
+						});
+						console.log(ar_word[i]);
+						console.log(src[i]);
+						// break;
+					}
+					//ローマ字と対応付けする処理
+					for (var j = 0; j < kana_roma.length;) {
+						if (ar_word[i]==kana_roma[j]) {
+							//ローマ字の特定
+							r_name = kana_roma[j+1];
+							console.log(r_name);
+							//ソースの作成
+							src[i] = "devil_word/"+r_name+".wav";
+							if (root_src != null) {
+								src[i] = root_src+r_name+".wav";
+							}else if (j==kana_roma.length) {
+								break;
+							}
+							console.log(src[i]);
+						}
+						j+=2;
+					}
+				}
+				//srcに入れたソースを配列を回しながら再生
+				var audio = new Audio(),k = 0;
+				audio.addEventListener('ended', function () {
+					k = ++k < src.length ? k : src.length;
+					console.log(k)
+					audio.src = src[k];
+					audio.play();
+				},true);
+				audio.loop = false;
+				audio.src = src[0];
+				audio.play();
+			}		
+	</script>
+	<footer>
+		<!-- <div id="devil_gif">
+			<img src="img/devil.gif" height="auto" width="30%">
+		</div> -->
+		<a href="osha_kyasha.html">おしゃべりキャシャーン</a>
+	</footer>
+</body>
+</html>

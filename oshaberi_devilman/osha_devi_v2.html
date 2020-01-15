@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/osha_devi.css">
+	<title>おしゃべりデビルマン</title>
+</head>
+<body>
+	<h1>おしゃべりデビルマン</h1>
+	<p>ここにしゃべらせる内容を書いてください</p>
+	<form name="form1">
+		<!-- <input type="text" name="word" value="" id="word" /> -->
+		<textarea name="word" rows="4" cols="40" id="word">ここに記入してください。</textarea>
+		<input type="button" value="発声" onclick="clickBtn();" />
+	</form>
+	<div id="word">
+		<font size="6">あ～</font> 
+		<audio src="r_word/ah.wav" controls>
+	</div>
+	<div id="word">
+		<font size="6">マン(短い)</font> 
+		<audio src="r_word/man.wav" controls>
+	</div>
+	<div id="word">
+		<font size="6">マン(長い)</font> 
+		<audio src="r_word/man_long.wav" controls>
+	</div>
+	<div id="word">
+		<font size="6">です</font> 
+		<audio src="r_word/desu.wav" controls>
+	</div>
+	<div id="word">
+		<font size="6">デビルマン</font> 
+		<audio src="r_word/devilman.wav" controls>
+	</div>
+	<br>
+	<!-- デビルマンのgif画像 -->
+	<img src="img/devil.gif" height="auto" width="30%">
+	<!-- ここからおしゃべり機能 -->
+	<script type="text/javascript">
+		var clickBtn = function(){
+			const word = document.form1.word.value;
+			document.getElementById("word").textContent = word;
+			//一文字ずつar_wordにひらがなを格納して配列を回す
+			var ar_word = Array.from(word);
+			//かなとローマ字の対応表
+			var kana_roma = [
+				"あ","a","い","i","う","u","え","e","お","o",
+				"か","ka","き","ki","く","ku","け","ke","こ","ko",
+				"さ","sa","し","si","す","su","せ","se","そ","so",
+				"た","ta","ち","ti","つ","tu","て","te","と","to",
+				"な","na","に","ni","ぬ","nu","ね","ne","の","no",
+				"は","ha","ひ","hi","ふ","hu","へ","he","ほ","ho",
+				"ま","ma","み","mi","む","mu","め","me","も","mo",
+				"や","ya","ゆ","yu","よ","yo",
+				"ら","ra","り","ri","る","ru","れ","re","ろ","ro",
+				"わ","wa","を","wo","ん","n",
+				];
+			//ソースの格納配列の用意
+			var src = new Array;
+			//ローマ字を格納する変数
+			var r_name;
+			//再生するvoiceを用意する配列
+			var voice = new Audio(src[k]);
+			//1文字ずつ切り分けた分を配列を回す処理
+			for (var i = 0; i<ar_word.length; i++) {
+					console.log(ar_word[i]);
+					//ローマ字と対応付けする処理
+					for (var j = 0; j < kana_roma.length;) {
+						if (ar_word[i]==kana_roma[j]) {
+							//ローマ字の特定
+							r_name = kana_roma[j+1];
+							console.log(r_name);
+							//ソースの作成
+							src[i] = "r_word/"+r_name+".wav";
+							console.log(src[i]);
+						}
+						j+=2;
+					}
+				}
+				//srcに入れたソースを配列を回しながら再生
+				var audio = new Audio(),k = 0;
+				audio.addEventListener('ended', function () {
+					k = ++k < src.length ? k : src.length;
+					console.log(k)
+					audio.src = src[k];
+					audio.play();
+				},true);
+				audio.loop = false;
+				audio.src = src[0];
+				audio.play();
+			}		
+	</script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 	$_SESSION['user_id'] = $user_id;
 	//必須項目チェック
 	if ($food_name == '' || $content == ''){
-		header('Location:buono_main.php'); 
+		header('Location:post_list.php'); 
 		exit();
 	}
 	//写真データの変数
@@ -66,7 +66,7 @@
 				}	
 			}//--if
 		}//--if
-		header('Location: buono_main.php');
+		header('Location: post_list.php');
 	}catch(PDOEXception $e){
 		die('エラー：'.$e->getMessage());
 	}

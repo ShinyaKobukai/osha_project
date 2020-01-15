@@ -21,9 +21,10 @@
     <nav id="menu">
       <ul>
         <li><a href="../home.html"><i class="fas fa-home"></i>ホーム</a></li>
-        <li><a href="register.html"><i class="fas fa-user"></i>アカウント作成</a></li>
+        <li><a href="../register.html"><i class="fas fa-user"></i>アカウント作成</a></li>
         <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
-	<li><a href="../post_list.php"><i class="far fa-comments"></i>ポスト</a></li>
+        <li><a href="profile_edit.php"><i class="fas fa-user-cog"></i>プロフィール編集</a></li>
+        <li><a href="../post_list.php"><i class="far fa-comments"></i>ポスト</a></li>
       </ul>
     </nav>
   </header>
@@ -32,7 +33,8 @@
     <h1>レビュー編集</h1>
     <form action="edit_result.php" method="post">
       <label for="box">review</label>
-      <textarea name="post_edit" cols="15" rows="4" maxlength="20" placeholder="ご意見・ご感想をご記入ください"></textarea>
+      <textarea name="post_edit" cols="15" rows="4" maxlength="20" placeholder=""><?php echo $content;?></textarea>
+      <p><input type="hidden" name="post_id" value="<?php echo $post_id;?>"></p>
       <input type="submit" value="編集する">           
     </form>
   </div>
